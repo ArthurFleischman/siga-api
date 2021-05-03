@@ -11,7 +11,7 @@ config :siga,
   ecto_repos: [Siga.Repo],
   generators: [binary_id: true]
 
-config :sysdev,
+config :siga,
   timezone: "America/Recife"
 
 # Configures the endpoint

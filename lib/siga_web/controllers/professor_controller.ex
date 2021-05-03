@@ -1,8 +1,8 @@
-defmodule SysdevWeb.ProfessorController do
+defmodule SigaWeb.ProfessorController do
   use SigaWeb, :controller
 
-  alias Sysdev.User
-  alias Sysdev.User.Professor
+  alias Siga.User
+  alias Siga.User.Professor
 
   action_fallback SysdevWeb.FallbackController
 

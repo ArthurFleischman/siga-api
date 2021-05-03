@@ -1,4 +1,4 @@
-defmodule Sysdev.User.Student do
+defmodule Siga.User.Student do
   use Ecto.Schema
   import Ecto.Changeset
 

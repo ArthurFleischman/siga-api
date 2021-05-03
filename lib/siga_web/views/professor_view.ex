@@ -1,6 +1,6 @@
-defmodule SysdevWeb.ProfessorView do
+defmodule SigaWeb.ProfessorView do
   use SigaWeb, :view
-  alias SysdevWeb.ProfessorView
+  alias SigaWeb.ProfessorView
 
   def render("index.json", %{professor: professor}) do
     %{data: render_many(professor, ProfessorView, "professor.json")}

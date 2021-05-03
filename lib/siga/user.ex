@@ -1,12 +1,13 @@
-defmodule Sysdev.User do
+defmodule Siga.User do
   @moduledoc """
   The User context.
   """
 
   import Ecto.Query, warn: false
-  alias Sysdev.Repo
+  alias Siga.Repo
 
-  alias Sysdev.User.Student
+  alias Siga.User.Student
+
 
   @doc """
   Returns the list of student.
@@ -102,7 +103,7 @@ defmodule Sysdev.User do
     Student.changeset(student, attrs)
   end
 
-  alias Sysdev.User.Professor
+  alias Siga.User.Professor
 
   @doc """
   Returns the list of professor.

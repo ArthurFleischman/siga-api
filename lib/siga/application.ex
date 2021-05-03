@@ -17,7 +17,7 @@ defmodule Siga.Application do
       SigaWeb.Endpoint,
       # Start a worker by calling: Siga.Worker.start_link(arg)
       # {Siga.Worker, arg}
-      {Sysdev.BucketServer, %{"init_time" => get_date_time()}}
+      {Siga.BucketServer, %{"init_time" => get_date_time()}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -27,7 +27,7 @@ defmodule Siga.Application do
   end
 
   defp get_date_time() do
-    Timex.now(Application.get_env(:sysdev, :timezone) || "America/Recife")
+    Timex.now(Application.get_env(:siga, :timezone) || "America/Recife")
   end
 
   # Tell Phoenix to update the endpoint configuration

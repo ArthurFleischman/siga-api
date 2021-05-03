@@ -1,8 +1,8 @@
-defmodule SysdevWeb.ServerController do
+defmodule SigaWeb.ServerController do
   use SigaWeb, :controller
   use Agent
 
-  action_fallback SysdevWeb.FallbackController
+  action_fallback SigaWeb.FallbackController
 
   def ping(conn,_params)do
     conn
@@ -12,7 +12,7 @@ defmodule SysdevWeb.ServerController do
   end
 
   def uptime(conn,%{"format" => value}) do
-    with {status_code,msg} <- Sysdev.BucketServer.uptime(value) do
+    with {status_code,msg} <- Siga.BucketServer.uptime(value) do
       conn
       |> put_resp_content_type("text/plain")
       |> put_status(status_code)

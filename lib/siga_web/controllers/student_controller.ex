@@ -1,10 +1,10 @@
-defmodule SysdevWeb.StudentController do
+defmodule SigaWeb.StudentController do
   use SigaWeb, :controller
 
-  alias Sysdev.User
-  alias Sysdev.User.Student
+  alias Siga.User
+  alias Siga.User.Student
 
-  action_fallback SysdevWeb.FallbackController
+  action_fallback SigaWeb.FallbackController
 
   def index(conn, _params) do
     student = User.list_student()

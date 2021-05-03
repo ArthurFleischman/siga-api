@@ -1,4 +1,4 @@
-defmodule Sysdev.BucketServer do
+defmodule Siga.BucketServer do
   use Agent
 
   def start_link(initial_value\\%{}) do
@@ -31,13 +31,11 @@ defmodule Sysdev.BucketServer do
   def uptime(format) do
     init_time = get("init_time")
     atom_format = String.to_atom(format)
-    current_time = Application.get_env(:sysdev, :timezone) |> Timex.now()
-
+    current_time = Application.get_env(:siga, :timezone) |> Timex.now()
     case Timex.diff(current_time,init_time,atom_format) do
 
       {:error, {:invalid_granularity, invalid_format}}->
         {:bad_request,"invalid format '#{invalid_format}'"}
-
        timestamp ->
         {:ok,timestamp}
     end

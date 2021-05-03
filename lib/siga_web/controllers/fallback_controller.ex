@@ -1,4 +1,4 @@
-defmodule SysdevWeb.FallbackController do
+defmodule SigaWeb.FallbackController do
   @moduledoc """
   Translates controller action results into valid `Plug.Conn` responses.
 
@@ -10,7 +10,7 @@ defmodule SysdevWeb.FallbackController do
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(SysdevWeb.ChangesetView)
+    |> put_view(SigaWeb.ChangesetView)
     |> render("error.json", changeset: changeset)
   end
 
@@ -18,7 +18,7 @@ defmodule SysdevWeb.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> put_view(SysdevWeb.ErrorView)
+    |> put_view(SigaWeb.ErrorView)
     |> render(:"404")
   end
 end
