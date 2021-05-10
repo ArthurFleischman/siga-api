@@ -5,8 +5,8 @@ defmodule Siga.Repo.Migrations.CreateUsers do
     create table(:users, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :name, :string
-      add :cpf, :string
-      add :email, :string
+      add :cpf, :string, null: false
+      add :email, :string, null: false
       add :password, :string
       add :role, :string
 
@@ -15,5 +15,6 @@ defmodule Siga.Repo.Migrations.CreateUsers do
 
     create unique_index(:users, [:cpf])
     create unique_index(:users, [:email])
+
   end
 end
