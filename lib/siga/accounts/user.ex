@@ -30,6 +30,6 @@ defmodule Siga.Accounts.User do
       Bcrypt.gen_salt(Application.get_env(:bcrypt_elixir, :log_rounds), true)
     )
     |> (fn value -> %{password: value} end).()
-    |> (fn map -> changeset(changeset, map) end).()
+    |> (fn map -> cast(changeset, map, [:password]) end).()
   end
 end
