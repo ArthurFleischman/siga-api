@@ -52,7 +52,6 @@ defmodule Siga.Accounts do
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
-    |> User.hash_password()
     |> Repo.insert()
   end
 

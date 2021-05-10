@@ -1,11 +1,11 @@
 defmodule Siga.Accounts.User do
-  use Ecto.Schema, Application
-
+  use Ecto.Schema
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
+    field :cpf, :string
     field :email, :string
     field :name, :string
     field :password, :string
@@ -17,13 +17,15 @@ defmodule Siga.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password, :role])
-    |> validate_required([:name, :email, :password, :role])
+    |> cast(attrs, [:name, :cpf, :email, :password, :role])
+    |> validate_required([:name, :cpf, :email, :password, :role])
+    |> unique_constraint(:cpf)
+    |> unique_constraint(:email)
   end
 
   def hash_password(changeset) do
     changeset
-    |> Ecto.Changeset.get_field(:password)
+    |> get_field(:password)
     |> Bcrypt.Base.hash_password(
       Bcrypt.gen_salt(Application.get_env(:bcrypt_elixir, :log_rounds), true)
     )

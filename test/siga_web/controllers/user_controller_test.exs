@@ -5,18 +5,20 @@ defmodule SigaWeb.UserControllerTest do
   alias Siga.Accounts.User
 
   @create_attrs %{
+    cpf: "some cpf",
     email: "some email",
     name: "some name",
     password: "some password",
     role: "some role"
   }
   @update_attrs %{
+    cpf: "some updated cpf",
     email: "some updated email",
     name: "some updated name",
     password: "some updated password",
     role: "some updated role"
   }
-  @invalid_attrs %{email: nil, name: nil, password: nil, role: nil}
+  @invalid_attrs %{cpf: nil, email: nil, name: nil, password: nil, role: nil}
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)
@@ -43,6 +45,7 @@ defmodule SigaWeb.UserControllerTest do
 
       assert %{
                "id" => id,
+               "cpf" => "some cpf",
                "email" => "some email",
                "name" => "some name",
                "password" => "some password",
@@ -67,6 +70,7 @@ defmodule SigaWeb.UserControllerTest do
 
       assert %{
                "id" => id,
+               "cpf" => "some updated cpf",
                "email" => "some updated email",
                "name" => "some updated name",
                "password" => "some updated password",
