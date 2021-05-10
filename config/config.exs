@@ -11,6 +11,8 @@ config :siga,
   ecto_repos: [Siga.Repo],
   generators: [binary_id: true]
 
+config :bcrypt_elixir, log_rounds: 4
+
 config :siga,
   timezone: "America/Recife"
 
