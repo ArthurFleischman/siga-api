@@ -34,6 +34,7 @@ defmodule Siga.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.3"},
+      {:brcpfcnpj, "~> 0.2.4"},
       {:dotenv, "~> 3.1"},
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},

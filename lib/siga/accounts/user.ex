@@ -1,5 +1,6 @@
 defmodule Siga.Accounts.User do
   use Ecto.Schema
+  import Cpfcnpj
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -21,8 +22,22 @@ defmodule Siga.Accounts.User do
     |> validate_required([:name, :cpf, :email, :password, :role])
     |> validate_inclusion(:role, ["student", "professor"], message: "invalid role")
     |> validate_length(:cpf, is: 11)
+    |> cpf_validation()
     |> unique_constraint(:cpf)
     |> unique_constraint(:email)
+  end
+
+  def cpf_validation(changeset) do
+    changeset
+    |> get_field(:cpf)
+    |> (fn cpf -> valid?({:cpf, cpf}) end).()
+    |> case do
+      true ->
+        changeset
+
+      false ->
+        add_error(changeset, :cpf, "cpf is invalid")
+    end
   end
 
   def hash_password(changeset) do
