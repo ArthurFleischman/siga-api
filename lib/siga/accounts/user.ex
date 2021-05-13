@@ -19,6 +19,8 @@ defmodule Siga.Accounts.User do
     user
     |> cast(attrs, [:name, :cpf, :email, :password, :role])
     |> validate_required([:name, :cpf, :email, :password, :role])
+    |> validate_inclusion(:role, ["student", "professor"], message: "invalid role")
+    |> validate_length(:cpf, is: 11)
     |> unique_constraint(:cpf)
     |> unique_constraint(:email)
   end
