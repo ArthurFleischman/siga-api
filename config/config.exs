@@ -7,6 +7,10 @@
 # General application configuration
 use Mix.Config
 
+config :my_app, MyApp.Guardian,
+  issuer: "my_app",
+  secret_key: "vE/0wLPhpW6FsUpWHG+FjSiSwAixt6W2P7DijSdprSZ1d9CgWgYI7uXA/HyBom77"
+
 config :siga,
   ecto_repos: [Siga.Repo],
   generators: [binary_id: true]
