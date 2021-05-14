@@ -40,4 +40,16 @@ defmodule SigaWeb.UserController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def login(conn, %{"username" => username, "password" => password}) do
+    with {status, view, data} <- Accounts.authenticate_cred(username, password) do
+      conn
+      |> put_status(status)
+      |> (fn conn ->
+            if is_binary(data),
+              do: text(conn, data),
+              else: render(conn, view, user: data)
+          end).()
+    end
+  end
 end

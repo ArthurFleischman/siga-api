@@ -37,6 +37,16 @@ defmodule Siga.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_username!(username) do
+    Repo.get_by!(User, cpf: username)
+  end
+
+  def authenticate_cred(username, password) do
+    username
+    |> get_username!()
+    |> User.authenticate(password)
+  end
+
   @doc """
   Creates a user.
 

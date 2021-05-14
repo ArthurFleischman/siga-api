@@ -7,10 +7,12 @@ defmodule SigaWeb.Router do
 
   scope "/api", SigaWeb do
     pipe_through :api
-
-    resources "/users", UserController, except: [:new, :edit]
-
+    post "/login", UserController, :login
     get "/ping", ServerController, :ping
     get "/uptime/:format", ServerController, :uptime
+  end
+
+  scope "/api/safe", SigaWeb do
+    resources "/users", UserController, except: [:new, :edit]
   end
 end

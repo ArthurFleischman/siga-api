@@ -11,11 +11,13 @@ defmodule SigaWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id,
+    %{
+      id: user.id,
       name: user.name,
       cpf: user.cpf,
       email: user.email,
       password: user.password,
-      role: user.role}
+      role: user.role
+    }
   end
 end

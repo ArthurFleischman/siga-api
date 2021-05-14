@@ -49,4 +49,17 @@ defmodule Siga.Accounts.User do
     |> (fn value -> %{password: value} end).()
     |> (fn map -> cast(changeset, map, [:password]) end).()
   end
+
+  def authenticate(user, password) do
+    user
+    |> (fn map -> Map.get(map, :password) end).()
+    |> (fn hash_pass -> Bcrypt.verify_pass(password, hash_pass) end).()
+    |> case do
+      true ->
+        {:ok, "user.json", user}
+
+      false ->
+        {:not_found, "not_found.json", "user not found"}
+    end
+  end
 end
