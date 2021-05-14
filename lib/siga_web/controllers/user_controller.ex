@@ -42,14 +42,19 @@ defmodule SigaWeb.UserController do
   end
 
   def login(conn, %{"username" => username, "password" => password}) do
-    with {status, view, data} <- Accounts.authenticate_cred(username, password) do
-      conn
-      |> put_status(status)
-      |> (fn conn ->
-            if is_binary(data),
-              do: text(conn, data),
-              else: render(conn, view, user: data)
-          end).()
-    end
+    Accounts.authenticate_cred(username, password)
+    |> login_reply(conn)
+  end
+
+  defp login_reply({:not_found, reason}, conn) do
+    conn
+    |> put_status(:not_found)
+    |> render("404.json", reason: reason)
+  end
+
+  defp login_reply({:ok, user}, conn) do
+    conn
+    |> put_status(:ok)
+    |> render("user.json", user: user)
   end
 end

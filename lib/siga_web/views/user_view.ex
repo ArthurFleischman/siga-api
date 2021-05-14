@@ -20,4 +20,8 @@ defmodule SigaWeb.UserView do
       role: user.role
     }
   end
+
+  def render("404.json", %{reason: reason}) do
+    %{errors: %{details: reason}}
+  end
 end

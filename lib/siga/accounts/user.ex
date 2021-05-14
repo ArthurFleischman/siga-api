@@ -56,10 +56,10 @@ defmodule Siga.Accounts.User do
     |> (fn hash_pass -> Bcrypt.verify_pass(password, hash_pass) end).()
     |> case do
       true ->
-        {:ok, "user.json", user}
+        {:ok, user}
 
       false ->
-        {:not_found, "not_found.json", "user not found"}
+        {:not_found, "user not found"}
     end
   end
 end
