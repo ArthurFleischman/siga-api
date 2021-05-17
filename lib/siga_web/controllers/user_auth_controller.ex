@@ -1,7 +1,7 @@
 defmodule SigaWeb.UserAuthController do
   use SigaWeb, :controller
   alias Siga.Accounts
-  alias Siga.Accounts.User
+  # alias Siga.Accounts.User
 
   def login(conn, %{"username" => username, "password" => password}) do
     Accounts.authenticate_account(username, password)
@@ -15,14 +15,11 @@ defmodule SigaWeb.UserAuthController do
   end
 
   defp login_reply({:ok, user}, conn) do
-    conn
-    |> add_token(user)
-    |> put_status(:ok)
-    |> render("user.json", user: user)
-  end
-
-  defp add_token(conn, user) do
-    Guardian.Plug.sign_in(conn, user, :access)
+    with {:ok, jwt, _claims} <- SigaWeb.Guardian.encode_and_sign(user) do
+      conn
+      |> put_status(:ok)
+      |> render("user.json", %{user: user, token: jwt})
+    end
   end
 
   def authorize(conn, _params) do

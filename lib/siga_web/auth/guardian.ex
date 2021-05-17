@@ -1,14 +1,10 @@
 defmodule SigaWeb.Guardian do
   use Guardian, otp_app: :siga
+  alias Siga.Accounts
 
   # def sign_user() do
   #   # {:ok, token, full_claims}
   #   Guardian.encode_and_sign(:access, nil, %{app_name: "siga"})
-  # end
-
-  # def auth_user_token(token) do
-  #   # {:ok, claims}
-  #   MyApp.Guardian.decode_and_verify(token)
   # end
 
   def subject_for_token(resource, _claims) do
@@ -16,18 +12,13 @@ defmodule SigaWeb.Guardian do
     {:ok, sub}
   end
 
-  # def subject_for_token(_, _) do
+  # def subject_for_token(_resources, _claims) do
   #   {:error, :reason_for_error}
   # end
 
+  @spec resource_from_claims(nil | maybe_improper_list | map) :: {:ok, any}
   def resource_from_claims(claims) do
-    id = claims["sub"]
-    resource = SigaWeb.get_resource_by_id(id)
+    resource = Accounts.get_user!(claims["sub"])
     {:ok, resource}
   end
-
-  # def resource_from_claims(_claims) do
-  #   {:error, :reason_for_error}
-  #   # end
-  # end
 end

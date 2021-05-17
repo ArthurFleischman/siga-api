@@ -7,7 +7,7 @@
 # General application configuration
 use Mix.Config
 
-config :guardian, Siga.Guardian,
+config :siga, SigaWeb.Guardian,
   issuer: "siga",
   secret_key: "O9Oeew3D4Fj505EZhBn+pCjmKjd2DxR/A/b6fEvoixf0ePqzMS6A3edOH4E0d/jo",
   serializer: Siga.GuardianSerializer
