@@ -1,4 +1,4 @@
-defmodule Siga.Accounts.User do
+defmodule Siga.Entities.User do
   use Ecto.Schema
   import Cpfcnpj
   import Ecto.Changeset
@@ -61,8 +61,5 @@ defmodule Siga.Accounts.User do
       false ->
         {:not_found, "user not found"}
     end
-  end
-
-  def gen_jwt() do
   end
 end

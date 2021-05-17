@@ -1,6 +1,6 @@
 defmodule SigaWeb.Guardian do
   use Guardian, otp_app: :siga
-  alias Siga.Accounts
+  alias Siga.Entities
 
   # def sign_user() do
   #   # {:ok, token, full_claims}
@@ -18,7 +18,7 @@ defmodule SigaWeb.Guardian do
 
   @spec resource_from_claims(nil | maybe_improper_list | map) :: {:ok, any}
   def resource_from_claims(claims) do
-    resource = Accounts.get_user!(claims["sub"])
+    resource = Entities.get_user!(claims["sub"])
     {:ok, resource}
   end
 end

@@ -1,18 +1,17 @@
 defmodule SigaWeb.UserController do
   use SigaWeb, :controller
-  alias SigaWeb.Guardian, as: Guard
-  alias Siga.Accounts
-  alias Siga.Accounts.User
+  alias Siga.Entities
+  alias Siga.Entities.User
 
   action_fallback SigaWeb.FallbackController
 
   def index(conn, _params) do
-    users = Accounts.list_users()
+    users = Entities.list_users()
     render(conn, "index.json", users: users)
   end
 
   def create(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
+    with {:ok, %User{} = user} <- Entities.create_user(user_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
@@ -21,22 +20,22 @@ defmodule SigaWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Entities.get_user!(id)
     render(conn, "show.json", user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
+    user = Entities.get_user!(id)
 
-    with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
+    with {:ok, %User{} = user} <- Entities.update_user(user, user_params) do
       render(conn, "show.json", user: user)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Entities.get_user!(id)
 
-    with {:ok, %User{}} <- Accounts.delete_user(user) do
+    with {:ok, %User{}} <- Entities.delete_user(user) do
       send_resp(conn, :no_content, "")
     end
   end
