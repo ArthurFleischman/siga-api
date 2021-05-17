@@ -41,7 +41,7 @@ defmodule Siga.Accounts do
     Repo.get_by!(User, cpf: username)
   end
 
-  def authenticate_cred(username, password) do
+  def authenticate_account(username, password) do
     username
     |> get_username!()
     |> User.authenticate(password)

@@ -62,4 +62,7 @@ defmodule Siga.Accounts.User do
         {:not_found, "user not found"}
     end
   end
+
+  def gen_jwt() do
+  end
 end

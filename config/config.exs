@@ -7,9 +7,10 @@
 # General application configuration
 use Mix.Config
 
-config :my_app, MyApp.Guardian,
-  issuer: "my_app",
-  secret_key: "vE/0wLPhpW6FsUpWHG+FjSiSwAixt6W2P7DijSdprSZ1d9CgWgYI7uXA/HyBom77"
+config :guardian, Siga.Guardian,
+  issuer: "siga",
+  secret_key: "O9Oeew3D4Fj505EZhBn+pCjmKjd2DxR/A/b6fEvoixf0ePqzMS6A3edOH4E0d/jo",
+  serializer: Siga.GuardianSerializer
 
 config :siga,
   ecto_repos: [Siga.Repo],

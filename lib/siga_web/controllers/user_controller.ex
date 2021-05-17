@@ -1,6 +1,6 @@
 defmodule SigaWeb.UserController do
   use SigaWeb, :controller
-
+  alias SigaWeb.Guardian, as: Guard
   alias Siga.Accounts
   alias Siga.Accounts.User
 
@@ -39,22 +39,5 @@ defmodule SigaWeb.UserController do
     with {:ok, %User{}} <- Accounts.delete_user(user) do
       send_resp(conn, :no_content, "")
     end
-  end
-
-  def login(conn, %{"username" => username, "password" => password}) do
-    Accounts.authenticate_cred(username, password)
-    |> login_reply(conn)
-  end
-
-  defp login_reply({:not_found, reason}, conn) do
-    conn
-    |> put_status(:not_found)
-    |> render("404.json", reason: reason)
-  end
-
-  defp login_reply({:ok, user}, conn) do
-    conn
-    |> put_status(:ok)
-    |> render("user.json", user: user)
   end
 end
