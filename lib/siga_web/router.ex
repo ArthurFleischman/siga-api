@@ -16,5 +16,6 @@ defmodule SigaWeb.Router do
     pipe_through SigaWeb.Guardian.AuthPipeline
 
     resources "/users", UserController, except: [:new, :edit]
+    resources "/subjects", SubjectController, except: [:new, :edit]
   end
 end
