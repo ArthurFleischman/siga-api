@@ -9,8 +9,17 @@ use Mix.Config
 
 config :siga, SigaWeb.Guardian,
   issuer: "siga",
-  secret_key: "O9Oeew3D4Fj505EZhBn+pCjmKjd2DxR/A/b6fEvoixf0ePqzMS6A3edOH4E0d/jo",
-  serializer: Siga.GuardianSerializer
+  secret_key: "O9Oeew3D4Fj505EZhBn+pCjmKjd2DxR/A/b6fEvoixf0ePqzMS6A3edOH4E0d/jo"
+
+config :guardian, Guardian.DB,
+  # Add your repository module
+  repo: Siga.Repo,
+  # default
+  schema_name: "guardian_tokens",
+  # store all token types if not set
+  token_types: ["refresh_token", "access"],
+  # default: 60 minutes
+  sweep_interval: 1
 
 config :siga,
   ecto_repos: [Siga.Repo],

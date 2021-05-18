@@ -37,6 +37,7 @@ defmodule Siga.MixProject do
       {:brcpfcnpj, "~> 0.2.4"},
       {:dotenv, "~> 3.1"},
       {:guardian, "~> 2.1.1"},
+      {:guardian_db, "~> 2.0"},
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},

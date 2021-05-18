@@ -17,5 +17,7 @@ defmodule SigaWeb.Router do
 
     resources "/users", UserController, except: [:new, :edit]
     resources "/subjects", SubjectController, except: [:new, :edit]
+    post "/logout", UserAuthController, :logout
+    get "/check", UserAuthController, :is_session_up
   end
 end

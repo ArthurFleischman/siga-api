@@ -15,6 +15,7 @@ defmodule Siga.Application do
       {Phoenix.PubSub, name: Siga.PubSub},
       # Start the Endpoint (http/https)
       SigaWeb.Endpoint,
+      {Guardian.DB.Token.SweeperServer, []},
       # Start a worker by calling: Siga.Worker.start_link(arg)
       # {Siga.Worker, arg}
       {Siga.BucketServer, %{"init_time" => get_date_time()}}
