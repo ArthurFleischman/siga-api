@@ -7,9 +7,7 @@ defmodule Siga.Entities.Subject do
   schema "subjects" do
     field :hours, :integer
     field :name, :string
-    field :professor, :string
-    field :pre_requirements, :binary_id
-    field :co_requirements, :binary_id
+    field :professor, :binary_id
 
     timestamps()
   end
@@ -17,8 +15,8 @@ defmodule Siga.Entities.Subject do
   @doc false
   def changeset(subject, attrs) do
     subject
-    |> cast(attrs, [:name, :professor, :hours])
-    |> validate_required([:name, :professor, :hours])
+    |> cast(attrs, [:name, :hours])
+    |> validate_required([:name, :hours])
     |> unique_constraint(:name)
   end
 end

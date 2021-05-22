@@ -50,7 +50,7 @@ defmodule Siga.Entities.User do
     |> (fn map -> cast(changeset, map, [:password]) end).()
   end
 
-  def authenticate(user, password) do
+  def authenticate({:ok, user}, password) do
     user
     |> (fn map -> Map.get(map, :password) end).()
     |> (fn hash_pass -> Bcrypt.verify_pass(password, hash_pass) end).()
@@ -62,4 +62,6 @@ defmodule Siga.Entities.User do
         {:not_found, "user not found"}
     end
   end
+
+  def authenticate({:not_found, cause}, _password), do: {:not_found, cause}
 end

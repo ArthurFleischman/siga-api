@@ -8,6 +8,12 @@ defmodule SigaWeb.UserAuthController do
     |> login_reply(conn)
   end
 
+  # def login(conn, _params) do
+  #   conn
+  #   |>
+
+  # end
+
   defp login_reply({:not_found, reason}, conn) do
     conn
     |> put_status(:not_found)

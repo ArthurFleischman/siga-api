@@ -19,7 +19,7 @@ config :guardian, Guardian.DB,
   # store all token types if not set
   token_types: ["refresh_token", "access"],
   # default: 60 minutes
-  sweep_interval: 1
+  sweep_interval: 60
 
 config :siga,
   ecto_repos: [Siga.Repo],

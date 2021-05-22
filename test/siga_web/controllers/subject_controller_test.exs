@@ -6,15 +6,13 @@ defmodule SigaWeb.SubjectControllerTest do
 
   @create_attrs %{
     hours: 42,
-    name: "some name",
-    professor: "some professor"
+    name: "some name"
   }
   @update_attrs %{
     hours: 43,
-    name: "some updated name",
-    professor: "some updated professor"
+    name: "some updated name"
   }
-  @invalid_attrs %{hours: nil, name: nil, professor: nil}
+  @invalid_attrs %{hours: nil, name: nil}
 
   def fixture(:subject) do
     {:ok, subject} = Entities.create_subject(@create_attrs)
@@ -42,8 +40,7 @@ defmodule SigaWeb.SubjectControllerTest do
       assert %{
                "id" => id,
                "hours" => 42,
-               "name" => "some name",
-               "professor" => "some professor"
+               "name" => "some name"
              } = json_response(conn, 200)["data"]
     end
 
@@ -65,8 +62,7 @@ defmodule SigaWeb.SubjectControllerTest do
       assert %{
                "id" => id,
                "hours" => 43,
-               "name" => "some updated name",
-               "professor" => "some updated professor"
+               "name" => "some updated name"
              } = json_response(conn, 200)["data"]
     end
 

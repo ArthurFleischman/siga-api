@@ -7,6 +7,110 @@ defmodule Siga.Entities do
   alias Siga.Repo
 
   alias Siga.Entities.User
+
+  @doc """
+  Returns the list of users.
+
+  ## Examples
+
+      iex> list_users()
+      [%User{}, ...]
+
+  """
+  def list_users do
+    Repo.all(User)
+  end
+
+  @doc """
+  Gets a single user.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user!(123)
+      %User{}
+
+      iex> get_user!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user!(id), do: Repo.get!(User, id)
+
+  def get_username!(username), do: Repo.get_by!(User, cpf: username)
+
+  def authenticate_account(username, password) do
+    username
+    |> get_username!()
+    |> User.authenticate(password)
+  end
+
+  @doc """
+  Creates a user.
+
+  ## Examples
+
+      iex> create_user(%{field: value})
+      {:ok, %User{}}
+
+      iex> create_user(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_user(attrs \\ %{}) do
+    %User{}
+    |> User.changeset(attrs)
+    |> User.hash_password()
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a user.
+
+  ## Examples
+
+      iex> update_user(user, %{field: new_value})
+      {:ok, %User{}}
+
+      iex> update_user(user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a user.
+
+  ## Examples
+
+      iex> delete_user(user)
+      {:ok, %User{}}
+
+      iex> delete_user(user)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_user(%User{} = user) do
+    Repo.delete(user)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user changes.
+
+  ## Examples
+
+      iex> change_user(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_user(%User{} = user, attrs \\ %{}) do
+    User.changeset(user, attrs)
+  end
+
   alias Siga.Entities.Subject
 
   @doc """
@@ -103,108 +207,99 @@ defmodule Siga.Entities do
     Subject.changeset(subject, attrs)
   end
 
+  alias Siga.Entities.Requirements
+
   @doc """
-  Returns the list of users.
+  Returns the list of requirements.
 
   ## Examples
 
-      iex> list_users()
-      [%User{}, ...]
+      iex> list_requirements()
+      [%Requirements{}, ...]
 
   """
-  def list_users do
-    Repo.all(User)
+  def list_requirements do
+    Repo.all(Requirements)
   end
 
   @doc """
-  Gets a single user.
+  Gets a single requirements.
 
-  Raises `Ecto.NoResultsError` if the User does not exist.
+  Raises `Ecto.NoResultsError` if the Requirements does not exist.
 
   ## Examples
 
-      iex> get_user!(123)
-      %User{}
+      iex> get_requirements!(123)
+      %Requirements{}
 
-      iex> get_user!(456)
+      iex> get_requirements!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
-
-  def get_username!(username) do
-    Repo.get_by!(User, cpf: username)
-  end
-
-  def authenticate_account(username, password) do
-    username
-    |> get_username!()
-    |> User.authenticate(password)
-  end
+  def get_requirements!(id), do: Repo.get!(Requirements, id)
 
   @doc """
-  Creates a user.
+  Creates a requirements.
 
   ## Examples
 
-      iex> create_user(%{field: value})
-      {:ok, %User{}}
+      iex> create_requirements(%{field: value})
+      {:ok, %Requirements{}}
 
-      iex> create_user(%{field: bad_value})
+      iex> create_requirements(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
-    |> User.hash_password()
+  def create_requirements(attrs \\ %{}) do
+    %Requirements{}
+    |> Requirements.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a user.
+  Updates a requirements.
 
   ## Examples
 
-      iex> update_user(user, %{field: new_value})
-      {:ok, %User{}}
+      iex> update_requirements(requirements, %{field: new_value})
+      {:ok, %Requirements{}}
 
-      iex> update_user(user, %{field: bad_value})
+      iex> update_requirements(requirements, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_user(%User{} = user, attrs) do
-    user
-    |> User.changeset(attrs)
+  def update_requirements(%Requirements{} = requirements, attrs) do
+    requirements
+    |> Requirements.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a user.
+  Deletes a requirements.
 
   ## Examples
 
-      iex> delete_user(user)
-      {:ok, %User{}}
+      iex> delete_requirements(requirements)
+      {:ok, %Requirements{}}
 
-      iex> delete_user(user)
+      iex> delete_requirements(requirements)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_user(%User{} = user) do
-    Repo.delete(user)
+  def delete_requirements(%Requirements{} = requirements) do
+    Repo.delete(requirements)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking user changes.
+  Returns an `%Ecto.Changeset{}` for tracking requirements changes.
 
   ## Examples
 
-      iex> change_user(user)
-      %Ecto.Changeset{data: %User{}}
+      iex> change_requirements(requirements)
+      %Ecto.Changeset{data: %Requirements{}}
 
   """
-  def change_user(%User{} = user, attrs \\ %{}) do
-    User.changeset(user, attrs)
+  def change_requirements(%Requirements{} = requirements, attrs \\ %{}) do
+    Requirements.changeset(requirements, attrs)
   end
 end
