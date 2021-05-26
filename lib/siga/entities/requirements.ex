@@ -15,8 +15,7 @@ defmodule Siga.Entities.Requirements do
   @doc false
   def changeset(requirements, attrs) do
     requirements
-    |> cast(attrs, [:type, :subject, :requirement])
-    |> validate_required([:type, :subject, :requirement])
-    |> validate_inclusion(:type, ["co", "pre"], message: "invalid requirement type")
+    |> cast(attrs, [:type])
+    |> validate_required([:type])
   end
 end

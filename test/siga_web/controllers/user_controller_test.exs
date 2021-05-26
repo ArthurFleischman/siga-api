@@ -1,8 +1,8 @@
 defmodule SigaWeb.UserControllerTest do
   use SigaWeb.ConnCase
 
-  alias Siga.Accounts
-  alias Siga.Accounts.User
+  alias Siga.Entities
+  alias Siga.Entities.User
 
   @create_attrs %{
     cpf: "some cpf",
@@ -21,7 +21,7 @@ defmodule SigaWeb.UserControllerTest do
   @invalid_attrs %{cpf: nil, email: nil, name: nil, password: nil, role: nil}
 
   def fixture(:user) do
-    {:ok, user} = Accounts.create_user(@create_attrs)
+    {:ok, user} = Entities.create_user(@create_attrs)
     user
   end
 
