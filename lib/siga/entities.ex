@@ -42,6 +42,7 @@ defmodule Siga.Entities do
   def authenticate_account(username, password) do
     username
     |> get_username!()
+    |> IO.inspect()
     |> User.authenticate(password)
   end
 

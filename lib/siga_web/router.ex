@@ -2,14 +2,6 @@ defmodule SigaWeb.Router do
   use SigaWeb, :router
   use Plug.ErrorHandler
 
-  defimpl Plug.Exception, for: Ecto.NoResultsError do
-    @impl true
-    def status(_exception), do: :not_found
-
-    @impl true
-    def actions(_), do: []
-  end
-
   pipeline :api do
     plug :accepts, ["json"]
   end

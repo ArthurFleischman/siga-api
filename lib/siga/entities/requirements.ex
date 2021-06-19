@@ -17,5 +17,6 @@ defmodule Siga.Entities.Requirements do
     requirements
     |> cast(attrs, [:type])
     |> validate_required([:type])
+
   end
 end
