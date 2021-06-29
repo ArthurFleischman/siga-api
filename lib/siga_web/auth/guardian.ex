@@ -21,9 +21,7 @@ defmodule SigaWeb.Guardian do
   # GUARDIAN DB
 
   def on_revoke(claims, token, _options) do
-    with {:ok, _} <- DB.on_revoke(claims, token) do
-      {:ok, claims}
-    end
+    DB.on_revoke(claims, token)
   end
 
   def after_encode_and_sign(resource, claims, token, _options) do
