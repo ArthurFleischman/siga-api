@@ -1,5 +1,13 @@
 use Mix.Config
 
+config :siga, Siga.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "siga_prod",
+  hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.

@@ -9,7 +9,7 @@ defmodule Siga.Entities.User do
     field :cpf, :string
     field :email, :string
     field :name, :string
-    field :password, :string
+    field :password, Ecto.Enum, values: [:student, :professor]
     field :role, :string
 
     timestamps()
@@ -20,7 +20,6 @@ defmodule Siga.Entities.User do
     user
     |> cast(attrs, [:name, :cpf, :email, :password, :role])
     |> validate_required([:name, :cpf, :email, :password, :role])
-    |> validate_inclusion(:role, ["student", "professor"], message: "invalid role")
     |> validate_length(:cpf, is: 11)
     |> cpf_validation()
     |> unique_constraint(:cpf)
