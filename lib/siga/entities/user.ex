@@ -9,8 +9,8 @@ defmodule Siga.Entities.User do
     field :cpf, :string
     field :email, :string
     field :name, :string
-    field :password, Ecto.Enum, values: [:student, :professor]
-    field :role, :string
+    field :password, :string
+    field :role, Ecto.Enum, values: [:student, :professor]
 
     timestamps()
   end
