@@ -102,4 +102,11 @@ defmodule Siga.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def authenticate_account(username, password) do
+    username
+    |> get_username!()
+    |> IO.inspect()
+    |> User.authenticate(password)
+  end
 end
