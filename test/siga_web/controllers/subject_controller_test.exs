@@ -1,8 +1,8 @@
 defmodule SigaWeb.SubjectControllerTest do
   use SigaWeb.ConnCase
 
-  alias Siga.Entities
-  alias Siga.Entities.Subject
+  alias Siga.Subjects
+  alias Siga.Subjects.Subject
 
   @create_attrs %{
     hours: 42,
@@ -15,7 +15,7 @@ defmodule SigaWeb.SubjectControllerTest do
   @invalid_attrs %{hours: nil, name: nil}
 
   def fixture(:subject) do
-    {:ok, subject} = Entities.create_subject(@create_attrs)
+    {:ok, subject} = Subjects.create_subject(@create_attrs)
     subject
   end
 

@@ -1,18 +1,18 @@
 defmodule SigaWeb.SubjectController do
   use SigaWeb, :controller
 
-  alias Siga.Entities
-  alias Siga.Entities.Subject
+  alias Siga.Subjects
+  alias Siga.Subjects.Subject
 
   action_fallback SigaWeb.FallbackController
 
   def index(conn, _params) do
-    subjects = Entities.list_subjects()
+    subjects = Subjects.list_subjects()
     render(conn, "index.json", subjects: subjects)
   end
 
   def create(conn, %{"subject" => subject_params}) do
-    with {:ok, %Subject{} = subject} <- Entities.create_subject(subject_params) do
+    with {:ok, %Subject{} = subject} <- Subjects.create_subject(subject_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.subject_path(conn, :show, subject))
@@ -21,22 +21,22 @@ defmodule SigaWeb.SubjectController do
   end
 
   def show(conn, %{"id" => id}) do
-    subject = Entities.get_subject!(id)
+    subject = Subjects.get_subject!(id)
     render(conn, "show.json", subject: subject)
   end
 
   def update(conn, %{"id" => id, "subject" => subject_params}) do
-    subject = Entities.get_subject!(id)
+    subject = Subjects.get_subject!(id)
 
-    with {:ok, %Subject{} = subject} <- Entities.update_subject(subject, subject_params) do
+    with {:ok, %Subject{} = subject} <- Subjects.update_subject(subject, subject_params) do
       render(conn, "show.json", subject: subject)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    subject = Entities.get_subject!(id)
+    subject = Subjects.get_subject!(id)
 
-    with {:ok, %Subject{}} <- Entities.delete_subject(subject) do
+    with {:ok, %Subject{}} <- Subjects.delete_subject(subject) do
       send_resp(conn, :no_content, "")
     end
   end

@@ -1,11 +1,11 @@
-defmodule Siga.Entities.Requirements do
+defmodule Siga.Subjects.Requirement do
   use Ecto.Schema
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "requirements" do
-    field :type, Ecto.Enum, values: [:co, :pre]
+  schema "requirement" do
+    field :type, :string
     field :subject, :binary_id
     field :requirement, :binary_id
 
@@ -13,8 +13,8 @@ defmodule Siga.Entities.Requirements do
   end
 
   @doc false
-  def changeset(requirements, attrs) do
-    requirements
+  def changeset(requirement, attrs) do
+    requirement
     |> cast(attrs, [:type])
     |> validate_required([:type])
   end

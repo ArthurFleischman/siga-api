@@ -1,16 +1,19 @@
-defmodule Siga.Entities.User do
+defmodule Siga.Accounts.User do
   use Ecto.Schema
-  import Cpfcnpj
   import Ecto.Changeset
+  import Cpfcnpj
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
-    field :cpf, :string
-    field :email, :string
-    field :name, :string
-    field :password, :string
-    field :role, Ecto.Enum, values: [:student, :professor]
+    field :birthdate, :date, null: false
+    field :cpf, :string, null: false
+    field :email, :string, null: false
+    field :freashman, :date, null: false
+    field :name, :string, null: false
+    field :password, :string, null: false
+    field :phone, :string, null: false
+    field :role, Ecto.Enum, values: [:student, :professor], null: false
 
     timestamps()
   end
@@ -18,10 +21,10 @@ defmodule Siga.Entities.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :cpf, :email, :password, :role])
-    |> validate_required([:name, :cpf, :email, :password, :role])
-    |> validate_length(:cpf, is: 11)
-    |> cpf_validation()
+    |> cast(attrs, [:name, :password, :cpf, :phone, :birthdate, :role, :email, :freashman])
+    |> validate_required([:name, :password, :cpf, :phone, :birthdate, :role, :email, :freashman])
+    |> unique_constraint(:cpf)
+    |> unique_constraint(:email)
     |> unique_constraint(:cpf)
     |> unique_constraint(:email)
   end

@@ -1,4 +1,4 @@
-defmodule Siga.Entities.Subject do
+defmodule Siga.Subjects.Subject do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -15,8 +15,8 @@ defmodule Siga.Entities.Subject do
   @doc false
   def changeset(subject, attrs) do
     subject
-    |> cast(attrs, [:name, :hours])
-    |> validate_required([:name, :hours])
+    |> cast(attrs, [:hours, :name])
+    |> validate_required([:hours, :name])
     |> unique_constraint(:name)
   end
 end

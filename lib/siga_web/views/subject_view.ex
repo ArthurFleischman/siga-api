@@ -12,7 +12,7 @@ defmodule SigaWeb.SubjectView do
 
   def render("subject.json", %{subject: subject}) do
     %{id: subject.id,
-      name: subject.name,
-      hours: subject.hours}
+      hours: subject.hours,
+      name: subject.name}
   end
 end

@@ -1,10 +1,10 @@
 defmodule SigaWeb.UserAuthController do
   use SigaWeb, :controller
-  alias Siga.Entities
+  alias Siga.Accounts
   # alias Siga.Accounts.User
 
   def login(conn, %{"username" => username, "password" => password}) do
-    Entities.authenticate_account(username, password)
+    Accounts.authenticate_account(username, password)
     |> login_reply(conn)
   end
 

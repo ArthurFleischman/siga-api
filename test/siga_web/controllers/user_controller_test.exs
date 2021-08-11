@@ -1,27 +1,33 @@
 defmodule SigaWeb.UserControllerTest do
   use SigaWeb.ConnCase
 
-  alias Siga.Entities
-  alias Siga.Entities.User
+  alias Siga.Accounts
+  alias Siga.Accounts.User
 
   @create_attrs %{
+    birthdate: ~D[2010-04-17],
     cpf: "some cpf",
     email: "some email",
+    freashman: ~D[2010-04-17],
     name: "some name",
     password: "some password",
+    phone: "some phone",
     role: "some role"
   }
   @update_attrs %{
+    birthdate: ~D[2011-05-18],
     cpf: "some updated cpf",
     email: "some updated email",
+    freashman: ~D[2011-05-18],
     name: "some updated name",
     password: "some updated password",
+    phone: "some updated phone",
     role: "some updated role"
   }
-  @invalid_attrs %{cpf: nil, email: nil, name: nil, password: nil, role: nil}
+  @invalid_attrs %{birthdate: nil, cpf: nil, email: nil, freashman: nil, name: nil, password: nil, phone: nil, role: nil}
 
   def fixture(:user) do
-    {:ok, user} = Entities.create_user(@create_attrs)
+    {:ok, user} = Accounts.create_user(@create_attrs)
     user
   end
 
@@ -45,10 +51,13 @@ defmodule SigaWeb.UserControllerTest do
 
       assert %{
                "id" => id,
+               "birthdate" => "2010-04-17",
                "cpf" => "some cpf",
                "email" => "some email",
+               "freashman" => "2010-04-17",
                "name" => "some name",
                "password" => "some password",
+               "phone" => "some phone",
                "role" => "some role"
              } = json_response(conn, 200)["data"]
     end
@@ -70,10 +79,13 @@ defmodule SigaWeb.UserControllerTest do
 
       assert %{
                "id" => id,
+               "birthdate" => "2011-05-18",
                "cpf" => "some updated cpf",
                "email" => "some updated email",
+               "freashman" => "2011-05-18",
                "name" => "some updated name",
                "password" => "some updated password",
+               "phone" => "some updated phone",
                "role" => "some updated role"
              } = json_response(conn, 200)["data"]
     end

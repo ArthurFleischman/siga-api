@@ -4,8 +4,8 @@ defmodule Siga.Repo.Migrations.CreateSubjects do
   def change do
     create table(:subjects, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :name, :string
       add :hours, :integer
+      add :name, :string
       add :professor, references(:users, on_delete: :nothing, type: :binary_id)
 
       timestamps()
