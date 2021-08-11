@@ -113,7 +113,7 @@ defmodule Siga.Subjects do
       [%Requirement{}, ...]
 
   """
-  def list_requiirement do
+  def list_requirement do
     Repo.all(Requirement)
   end
 

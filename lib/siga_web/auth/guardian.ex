@@ -2,7 +2,7 @@ defmodule SigaWeb.Guardian do
   use Guardian, otp_app: :siga
   alias Guardian.DB
 
-  alias Siga.Entities
+  alias Siga.Accounts
 
   @spec subject_for_token(atom | %{:id => any, optional(any) => any}, any) :: {:ok, binary}
   def subject_for_token(resource, _claims) do
@@ -12,7 +12,7 @@ defmodule SigaWeb.Guardian do
   end
 
   def resource_from_claims(claims) do
-    user = Entities.get_user!(claims["sub"])
+    user = Accounts.get_user!(claims["sub"])
     {:ok, user}
   rescue
     Ecto.NoResultsError -> {:error, :resource_not_found}

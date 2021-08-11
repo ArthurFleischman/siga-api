@@ -12,7 +12,7 @@ defmodule SigaWeb.Router do
     get "/uptime/:format", ServerController, :uptime
     post "/login", UserAuthController, :login
 
-    scope "/api/safe" do
+    scope "/safe" do
       pipe_through SigaWeb.Guardian.AuthPipeline
       resources "/users", UserController, except: [:new, :edit]
       resources "/requirements", RequirementController, except: [:new, :edit]
