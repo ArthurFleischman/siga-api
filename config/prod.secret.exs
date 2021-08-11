@@ -5,7 +5,7 @@
 import Config
 
 database_url =
-  System.get_env("SIGA_DATABASE_URL") ||
+  System.get_env("DATABASE_URL") ||
     raise """
     environment variable SIGA_DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
@@ -26,7 +26,7 @@ secret_key_base =
 config :siga, SigaWeb.Endpoint,
   server: true,
   http: [
-    port: String.to_integer(System.get_env("PORT") || "8081"),
+    port: {:system, "PORT"},
     transport_options: [socket_opts: [:inet6]]
   ],
   secret_key_base: secret_key_base
