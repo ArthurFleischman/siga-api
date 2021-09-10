@@ -6,6 +6,7 @@ config :siga, Siga.Repo,
   password: "ac09e9c67530c437a3f2ab0589bb230663b70e33debb441f058683757e627ae2",
   database: "d9f1rmisdm5gst",
   hostname: "ec2-3-225-204-194.compute-1.amazonaws.com",
+  ssl: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
