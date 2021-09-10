@@ -4,9 +4,7 @@ defmodule SigaWeb.UserAuthController do
   # alias Siga.Accounts.User
 
   def login(conn, %{"username" => username, "password" => password}) do
-    username
-    |> String.replace("[.]|[-]", "")
-    |> Accounts.authenticate_account(password)
+    Accounts.authenticate_account(username, password)
     |> login_reply(conn)
   end
 
