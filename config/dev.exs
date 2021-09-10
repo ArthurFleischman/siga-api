@@ -17,7 +17,7 @@ config :siga, Siga.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :siga, SigaWeb.Endpoint,
-  http: [port: 8081],
+  http: [port: {:system, "PORT"}],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
