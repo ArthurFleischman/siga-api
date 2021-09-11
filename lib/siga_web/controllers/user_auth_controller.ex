@@ -27,7 +27,7 @@ defmodule SigaWeb.UserAuthController do
     conn
     |> revoke_token()
     |> put_status(:ok)
-    |> text("you got signed out")
+    |> json(%{"data" => "you got signed out"})
   end
 
   defp revoke_token(conn) do
