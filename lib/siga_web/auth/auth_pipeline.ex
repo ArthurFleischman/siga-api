@@ -8,5 +8,6 @@ defmodule SigaWeb.Guardian.AuthPipeline do
   plug Guardian.Plug.VerifyHeader, realm: "Bearer", claims: %{"typ" => "access"}
   plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
   plug Guardian.Plug.LoadResource, allow_blank: true
+  plug Guardian.Plug.Pipeline, error_handler: SigaWeb.Guardian.AuthErrorHandler
   plug Guardian.Plug.EnsureAuthenticated, claims: %{"typ" => "access"}
 end
