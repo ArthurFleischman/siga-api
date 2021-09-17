@@ -6,7 +6,7 @@ defmodule SigaWeb.Guardian.AuthErrorHandler do
   @impl Guardian.Plug.ErrorHandler
   def auth_error(conn, {type, reason}, _opts) do
     IO.puts(to_string(type))
-    IO.puts(to_string(reason)})
+    IO.puts(to_string(reason))
 
     conn
     |> put_status(:bad_request)
