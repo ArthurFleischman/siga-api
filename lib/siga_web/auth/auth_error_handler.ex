@@ -5,11 +5,10 @@ defmodule SigaWeb.Guardian.AuthErrorHandler do
 
   @impl Guardian.Plug.ErrorHandler
   def auth_error(conn, {type, reason}, _opts) do
-    IO.puts(to_string(type))
-    IO.puts(to_string(reason))
+    IO.puts("[ERROR LOG] #{to_string(type)}")
 
     conn
-    |> put_status(:bad_request)
-    |> json(%{message: to_string(type), reason: to_string(reason)})
+    |> put_status(:unauthorized)
+    |> json(%{reason: to_string(reason)})
   end
 end
