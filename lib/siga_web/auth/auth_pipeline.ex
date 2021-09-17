@@ -4,7 +4,10 @@ defmodule SigaWeb.Guardian.AuthPipeline do
     module: SigaWeb.Guardian,
     error_handler: SigaWeb.Guardian.AuthErrorHandler
 
-  plug Guardian.Plug.Pipeline, error_handler: SigaWeb.Guardian.AuthErrorHandler
+  plug Guardian.Plug.Pipeline,
+    module: SigaWeb.Guardian,
+    error_handler: SigaWeb.Guardian.AuthErrorHandler
+
   plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
   plug Guardian.Plug.VerifyHeader, realm: "Bearer", claims: %{"typ" => "access"}
   plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
