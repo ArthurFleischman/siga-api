@@ -18,5 +18,6 @@ defmodule Siga.Repo.Migrations.CreateUsers do
 
     create unique_index(:users, [:cpf])
     create unique_index(:users, [:email])
+    create unique_index(:users, [:phone])
   end
 end

@@ -13,7 +13,7 @@ defmodule Siga.Accounts.User do
     field :name, :string, null: false
     field :password, :string, null: false
     field :phone, :string, null: false
-    field :role, Ecto.Enum, values: [:student, :professor], null: false
+    field :role, Ecto.Enum, values: [:student, :professor, :admin], null: false
 
     timestamps()
   end
