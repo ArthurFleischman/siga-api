@@ -10,7 +10,7 @@ defmodule SigaWeb do
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
+  on imports, uses and aliases.p
 
   Do NOT define functions inside the quoted expressions
   below. Instead, define any helper function in modules
