@@ -8,7 +8,7 @@ defmodule SigaWeb.Guardian.AuthErrorHandler do
     IO.puts("[ERROR LOG] #{to_string(type)}")
 
     conn
-    |> put_status(:forbidden)
+    |> put_status(401)
     |> json(%{reason: to_string(reason)})
   end
 end
