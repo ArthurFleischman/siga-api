@@ -11,7 +11,6 @@ defmodule SigaWeb.Router do
     get "/ping", ServerController, :ping
     get "/uptime/:format", ServerController, :uptime
     post "/login", UserAuthController, :login
-    get "/check", UserAuthController, :is_session_up
 
     scope "/safe" do
       pipe_through SigaWeb.Guardian.AuthPipeline
@@ -19,6 +18,7 @@ defmodule SigaWeb.Router do
       resources "/requirements", RequirementController, except: [:new, :edit]
       resources "/subjects", SubjectController, except: [:new, :edit]
       post "/logout", UserAuthController, :logout
+      get "/check", UserAuthController, :is_session_up
     end
   end
 end
