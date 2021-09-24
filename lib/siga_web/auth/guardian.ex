@@ -25,8 +25,6 @@ defmodule SigaWeb.Guardian do
   end
 
   def after_encode_and_sign(resource, claims, token, _options) do
-    IO.puts(claims["typ"])
-
     with {:ok, _} <- Guardian.DB.after_encode_and_sign(resource, claims["typ"], claims, token) do
       {:ok, token}
     end
