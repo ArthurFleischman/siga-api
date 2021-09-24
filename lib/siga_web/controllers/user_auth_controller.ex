@@ -41,6 +41,6 @@ defmodule SigaWeb.UserAuthController do
   def is_session_up(conn, _params) do
     conn
     |> put_status(:ok)
-    |> text(to_string(Guardian.Plug.session_active?(conn)))
+    |> json(%{"is_up" => Guardian.Plug.session_active?(conn)})
   end
 end
