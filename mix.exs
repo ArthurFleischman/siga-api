@@ -11,7 +11,7 @@ defmodule Siga.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      default_release: :siga_prod,
+      default_release: :siga_dev,
       releases: [
         siga_prod: [
           include_executables_for: [:unix],
