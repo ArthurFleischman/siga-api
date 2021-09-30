@@ -15,7 +15,6 @@ defmodule SigaWeb.Router do
     scope "/safe" do
       pipe_through SigaWeb.Guardian.AuthPipeline
       resources "/users", UserController, except: [:new, :edit]
-      resources "/profile_pic", ProfilePicController, except: [:new, :edit]
       resources "/requirements", RequirementController, except: [:new, :edit]
       resources "/subjects", SubjectController, except: [:new, :edit]
       post "/logout", UserAuthController, :logout
