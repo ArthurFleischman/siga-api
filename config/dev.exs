@@ -2,10 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :siga, Siga.Repo,
-  username: {:system, "DB_USER"},
-  password: {:system, "DB_PASSWORD"},
-  database: {:system, "DATABASE"},
-  hostname: {:system, "DB_HOST"},
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_PASSWORD"),
+  database: System.get_env("DATABASE"),
+  hostname: System.get_env("DB_HOST"),
   ssl: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
