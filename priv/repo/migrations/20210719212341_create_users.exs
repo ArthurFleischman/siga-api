@@ -12,7 +12,7 @@ defmodule Siga.Repo.Migrations.CreateUsers do
       add :role, :string
       add :email, :string
       add :freashman, :date
-      add :id_profile_pic, references(:profile_pic, on_delete: :nothing, type: :binary_id)
+      add :pic_path, :string
       timestamps()
     end
 

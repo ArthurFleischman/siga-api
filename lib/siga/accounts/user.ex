@@ -14,7 +14,7 @@ defmodule Siga.Accounts.User do
     field :password, :string, null: false
     field :phone, :string, null: false
     field :role, Ecto.Enum, values: [:student, :professor, :admin], null: false
-
+    field :pic_path, :string
     timestamps()
   end
 
@@ -38,7 +38,7 @@ defmodule Siga.Accounts.User do
         changeset
 
       false ->
-        add_error(changeset, :cpf, "cpf is invalid")
+        dd_error(changeset, :cpf, "cpf is invalid")
     end
   end
 
@@ -63,5 +63,23 @@ defmodule Siga.Accounts.User do
       false ->
         {:not_found, "user not found"}
     end
+  end
+
+  defp set_profile_pic_name(changeset) do
+    changeset
+    |> get_field(:cpf)
+    |> (fn cpf -> %{pic_path: Application.get_env(:siga, :upload_folder) <> "/" <> cpf} end).()
+    |> (fn path -> cast(changeset, path, [:pic_path]) end).()
+  end
+
+  def insert_pic(changeset, profile_pic) when is_binary(profile_pic) do
+    with pic <- Base.decode64!(profile_pic) do
+      changeset
+      |> set_profile_pic_name()
+      |> get_field(:pic_path)
+      |> File.write!(pic)
+    end
+
+    changeset
   end
 end

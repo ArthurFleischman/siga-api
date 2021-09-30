@@ -52,9 +52,12 @@ defmodule Siga.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
+    profile_pic = Map.pop!(attrs, :profile_pic)
+
     %User{}
     |> User.changeset(attrs)
     |> User.hash_password()
+    |> User.insert_pic(profile_pic)
     |> Repo.insert()
   end
 
