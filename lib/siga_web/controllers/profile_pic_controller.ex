@@ -28,7 +28,8 @@ defmodule SigaWeb.ProfilePicController do
   def update(conn, %{"id" => id, "profile_pic" => profile_pic_params}) do
     profile_pic = Assets.get_profile_pic!(id)
 
-    with {:ok, %ProfilePic{} = profile_pic} <- Assets.update_profile_pic(profile_pic, profile_pic_params) do
+    with {:ok, %ProfilePic{} = profile_pic} <-
+           Assets.update_profile_pic(profile_pic, profile_pic_params) do
       render(conn, "show.json", profile_pic: profile_pic)
     end
   end
