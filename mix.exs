@@ -10,14 +10,18 @@ defmodule Siga.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
-      # default_release: :siga_prod,
-      # releases: [
-      #   siga_prod: [
-      #     include_executables_for: [:unix],
-      #     applications: [siga: :permanent]
-      #   ]
-      # ]
+      deps: deps(),
+      default_release: :siga_prod,
+      releases: [
+        siga_prod: [
+          include_executables_for: [:unix],
+          applications: [siga: :permanent]
+        ],
+        siga_dev: [
+          include_executables_for: [:unix],
+          applications: [siga: :temporary]
+        ]
+      ]
     ]
   end
 

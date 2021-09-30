@@ -1,1 +1,1 @@
-web: MIX_ENV=$ENV mix phx.server
+web: _build/prod/rel/siga_$ENV/bin/siga_$ENV start
