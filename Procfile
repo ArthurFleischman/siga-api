@@ -1,1 +1,1 @@
-web: _build/prod/rel/siga_$ENV/bin/siga_$ENV start
+web: _build/$ENV/rel/siga_$ENV/bin/siga_$ENV start
