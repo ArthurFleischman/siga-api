@@ -17,7 +17,6 @@ defmodule SigaWeb.ServerController do
       |> put_resp_content_type("text/plain")
       |> put_status(status_code)
       |> text(msg)
-
     end
   end
 

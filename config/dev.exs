@@ -2,10 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :siga, Siga.Repo,
-  username: "hlztbcxaehkfgj",
-  password: "ac09e9c67530c437a3f2ab0589bb230663b70e33debb441f058683757e627ae2",
-  database: "d9f1rmisdm5gst",
-  hostname: "ec2-3-225-204-194.compute-1.amazonaws.com",
+  username: "aerkumlbidixpt",
+  password: "a2a6069885b4c26dcb3eb88a95ce98288260bc15801a67286e9f97d8b0281efd",
+  database: "d8oedqqfn50i6a",
+  hostname: "ec2-34-199-209-37.compute-1.amazonaws.com",
   ssl: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
