@@ -16,4 +16,8 @@ defmodule SigaWeb.ChangesetView do
     # as a JSON object. So we just pass it forward.
     %{errors: translate_errors(changeset)}
   end
+
+  def template_not_found(template, _assigns) do
+    %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
+  end
 end
